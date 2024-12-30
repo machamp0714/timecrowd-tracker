@@ -11,15 +11,26 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "start",
-      "title": "Start",
-      "description": "",
-      "mode": "view"
+      "name": "oauth",
+      "title": "OAuth",
+      "description": "OAuth integration",
+      "mode": "no-view"
+    }
+  ],
+  "preferences": [
+    {
+      "description": "The client id for your TimeCrowd account.",
+      "name": "clientId",
+      "placeholder": "Can be found at https://timecrowd.net/oauth/applications",
+      "required": true,
+      "title": "TimeCrowd Client ID",
+      "type": "textfield"
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.88.4",
-    "@raycast/utils": "^1.17.0"
+    "@raycast/utils": "^1.17.0",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.11",
