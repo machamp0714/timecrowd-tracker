@@ -22,7 +22,7 @@ export async function authorize(): Promise<void> {
     endpoint:
       "https://oauth.raycast.com/v1/authorize/EKfnyAISK_t0aniuTwXvwubTn3WZf400l28JCvSkP9M9m5LkL8EYsSUFAjOLsNZ3eUb0vxX3IRrXQQHsUvQy59Gx7FSUgwiuUm4MeBa46zuBlCsqb46v-MBOXpZeGpXovRudvVnDnvwVXM1Z31c",
     clientId: clientId,
-    scope: "read write",
+    scope: "",
   });
   const { authorizationCode } = await client.authorize(authRequest);
 
@@ -50,6 +50,14 @@ async function fetchTokens(authRequest: OAuth.AuthorizationRequest, authCode: st
     throw new Error(response.statusText);
   }
   return (await response.json()) as OAuth.TokenResponse;
+}
+
+export async function getToken(): Promise<string> {
+  const tokens = await client.getTokens();
+  if (!tokens) {
+    throw new Error("No tokens found");
+  }
+  return tokens.accessToken;
 }
 
 export default async function Command() {

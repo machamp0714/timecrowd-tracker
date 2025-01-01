@@ -15,6 +15,12 @@
       "title": "OAuth",
       "description": "OAuth integration",
       "mode": "no-view"
+    },
+    {
+      "name": "startStopTimeEntry",
+      "title": "Start/Stop Time Entry",
+      "description": "Start or stop a time entry",
+      "mode": "view"
     }
   ],
   "preferences": [
@@ -30,6 +36,7 @@
   "dependencies": {
     "@raycast/api": "^1.88.4",
     "@raycast/utils": "^1.17.0",
+    "dayjs": "^1.11.13",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
