@@ -46,7 +46,6 @@ async function fetchTokens(authRequest: OAuth.AuthorizationRequest, authCode: st
     { method: "POST", headers, body },
   );
   if (!response.ok) {
-    console.error("fetch tokens error:", await response.text());
     throw new Error(response.statusText);
   }
   return (await response.json()) as OAuth.TokenResponse;

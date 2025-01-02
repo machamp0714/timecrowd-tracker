@@ -11,11 +11,21 @@ export default function StartStopTimeEntry() {
   const weeklyDates = Array.from({ length: 7 }, (_, i) => today.subtract(i, "day"));
 
   const { isLoading: isUserLoading, data: user, revalidate: revalidateUser } = useUser();
-  const { isLoading: isDailyActivitiesLoading, data: dailyActivities } = useDailyActivities(weeklyDates);
+  const {
+    isLoading: isDailyActivitiesLoading,
+    data: dailyActivities,
+    revalidate: revalidateDailyActivities,
+  } = useDailyActivities(weeklyDates);
 
   return (
     <List isLoading={isUserLoading && isDailyActivitiesLoading}>
-      {user?.time_entry && <RunningTimeEntry timeEntry={user.time_entry} />}
+      {user?.time_entry && (
+        <RunningTimeEntry
+          timeEntry={user.time_entry}
+          revalidateDailyActivities={revalidateDailyActivities}
+          revalidateUser={revalidateUser}
+        />
+      )}
       {dailyActivities?.map((dailyActivity) => (
         <DailySection key={dailyActivity.date} dailyActivity={dailyActivity} revalidateUser={revalidateUser} />
       ))}
