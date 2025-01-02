@@ -1,8 +1,7 @@
 import { List } from "@raycast/api";
 import dayjs from "dayjs";
 
-import { useDailyActivities } from "./hooks/useDailyActivities";
-import { useUser } from "./hooks/useUser";
+import { useDailyActivities, useUser } from "./hooks";
 import { DailySection } from "./components/DailySection";
 import { RunningTimeEntry } from "./components/RunningTimeEntry";
 
@@ -10,15 +9,11 @@ export default function StartStopTimeEntry() {
   const today = dayjs();
   const weeklyDates = Array.from({ length: 7 }, (_, i) => today.subtract(i, "day"));
 
-  const { isLoading: isUserLoading, data: user, revalidate: revalidateUser } = useUser();
-  const {
-    isLoading: isDailyActivitiesLoading,
-    data: dailyActivities,
-    revalidate: revalidateDailyActivities,
-  } = useDailyActivities(weeklyDates);
+  const { isLoadingUser, user, revalidateUser } = useUser();
+  const { isLoadingDailyActivities, dailyActivities, revalidateDailyActivities } = useDailyActivities(weeklyDates);
 
   return (
-    <List isLoading={isUserLoading && isDailyActivitiesLoading}>
+    <List isLoading={isLoadingUser && isLoadingDailyActivities}>
       {user?.time_entry && (
         <RunningTimeEntry
           timeEntry={user.time_entry}
