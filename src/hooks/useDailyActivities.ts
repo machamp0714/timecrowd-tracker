@@ -1,5 +1,5 @@
 import { useCachedPromise } from "@raycast/utils";
-import { getDailyActivity } from "../api";
+import { getDailyActivity } from "@/api";
 
 import type { Dayjs } from "dayjs";
 

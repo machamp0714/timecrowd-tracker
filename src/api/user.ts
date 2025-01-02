@@ -1,5 +1,5 @@
-import { get } from "./timecrowdClient";
-import type { Category } from "./dailyActivity";
+import { get } from "@/api/timecrowdClient";
+import { Category } from "@/api/dailyActivity";
 
 export interface User {
   id: number;

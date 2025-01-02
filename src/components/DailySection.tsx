@@ -1,7 +1,7 @@
 import { List } from "@raycast/api";
 import dayjs from "dayjs";
-import { TaskDetail } from "./TaskDetail";
-import type { DailyActivity } from "../api/dailyActivity";
+import { TaskDetail } from "@/components/TaskDetail";
+import type { DailyActivity } from "@/api/dailyActivity";
 
 interface DailySectionProps {
   dailyActivity: DailyActivity;

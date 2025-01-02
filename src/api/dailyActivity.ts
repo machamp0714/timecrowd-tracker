@@ -1,4 +1,4 @@
-import { get } from "./timecrowdClient";
+import { get } from "@/api/timecrowdClient";
 import type { Dayjs } from "dayjs";
 
 export interface Category {

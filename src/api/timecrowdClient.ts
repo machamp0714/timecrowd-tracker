@@ -1,4 +1,4 @@
-import { getToken } from "../oauth";
+import { getToken } from "@/oauth";
 import fetch from "node-fetch";
 
 export const get = <T>(url: string) => timecrowdFetch<T>("GET", url);

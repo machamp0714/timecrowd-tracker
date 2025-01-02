@@ -1,6 +1,6 @@
 import { List, Icon, ActionPanel, Action, showToast, Toast } from "@raycast/api";
-import { startTask, type Task } from "../api";
-import { categoryColors } from "../helpers";
+import { startTask, type Task } from "@/api";
+import { categoryColors } from "@/helpers";
 
 interface TaskDetailProps {
   task: Task;

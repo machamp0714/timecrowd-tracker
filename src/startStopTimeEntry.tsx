@@ -1,9 +1,9 @@
 import { List } from "@raycast/api";
 import dayjs from "dayjs";
 
-import { useDailyActivities, useUser } from "./hooks";
-import { DailySection } from "./components/DailySection";
-import { RunningTimeEntry } from "./components/RunningTimeEntry";
+import { useDailyActivities, useUser } from "@/hooks";
+import { DailySection } from "@/components/DailySection";
+import { RunningTimeEntry } from "@/components/RunningTimeEntry";
 
 export default function StartStopTimeEntry() {
   const today = dayjs();
