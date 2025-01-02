@@ -1,7 +1,7 @@
 import { get } from "./timecrowdClient";
 import type { Dayjs } from "dayjs";
 
-interface Category {
+export interface Category {
   id: number;
   title: string;
   color: number;
