@@ -17,5 +17,5 @@ export interface User {
 }
 
 export const getUser = async (): Promise<User> => {
-  return await get<User>("https://timecrowd.net/api/v2/user");
+  return await get<User>("/api/v2/user");
 };

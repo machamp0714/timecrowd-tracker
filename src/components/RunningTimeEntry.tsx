@@ -1,10 +1,9 @@
 import { List, Icon, Action, ActionPanel, showToast, Toast } from "@raycast/api";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import type { User } from "../api/user";
+import { stopTimeEntry, type User } from "../api";
 import { useCurrentTime } from "../hooks/useCurrentTime";
 import { categoryColors } from "../helpers";
-import { stopTimeEntry } from "../api/timeEntry";
 
 dayjs.extend(duration);
 

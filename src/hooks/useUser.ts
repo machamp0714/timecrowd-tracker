@@ -1,4 +1,4 @@
-import { getUser } from "../api/user";
+import { getUser } from "../api";
 import { useCachedPromise } from "@raycast/utils";
 
 export const useUser = () => {

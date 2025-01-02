@@ -32,6 +32,6 @@ export interface DailyActivity {
   tasks: Task[];
 }
 
-export const fetchDailyActivity = async (date: Dayjs): Promise<DailyActivity> => {
-  return await get<DailyActivity>(`https://timecrowd.net/api/v2/daily_activity?date=${date.format("YYYY-MM-DD")}`);
+export const getDailyActivity = async (date: Dayjs): Promise<DailyActivity> => {
+  return await get<DailyActivity>(`/api/v2/daily_activity?date=${date.format("YYYY-MM-DD")}`);
 };
