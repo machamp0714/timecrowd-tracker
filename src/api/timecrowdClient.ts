@@ -2,6 +2,7 @@ import { getToken } from "../oauth";
 import fetch from "node-fetch";
 
 export const get = <T>(url: string) => timecrowdFetch<T>("GET", url);
+export const post = <T>(url: string) => timecrowdFetch<T>("POST", url);
 
 const timecrowdFetch = async <T>(method: string, url: string) => {
   const token = await getToken();

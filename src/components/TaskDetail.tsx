@@ -1,34 +1,24 @@
-import { List, Icon } from "@raycast/api";
+import { List, Icon, ActionPanel, Action, showToast, Toast } from "@raycast/api";
 import type { Task } from "../api/dailyActivity";
+import { startTask } from "../api/task";
+import { categoryColors } from "../helpers";
 
 interface TaskDetailProps {
   task: Task;
+  revalidateUser: () => void;
 }
 
-const categoryColors = [
-  "#c8eca4",
-  "#fcc7dc",
-  "#e2cce9",
-  "#bad7f5",
-  "#fcf6a7",
-  "#acd9c1",
-  "#f9cfcc",
-  "#cecef2",
-  "#b0e7ea",
-  "#ffd0a6",
-  "#badcad",
-  "#f3a9a4",
-  "#94bae3",
-  "#99c4d6",
-  "#e2d6b7",
-  "#b3c185",
-  "#dd9bb3",
-  "#829ece",
-  "#d3d3d3",
-  "#ccb38b",
-] as const;
+export const TaskDetail = ({ task, revalidateUser }: TaskDetailProps) => {
+  const handleStartTask = async () => {
+    try {
+      await startTask(task.team.id, task.id);
+      revalidateUser();
+      showToast(Toast.Style.Success, "Started task");
+    } catch {
+      showToast(Toast.Style.Failure, "Failed to start task");
+    }
+  };
 
-export const TaskDetail = ({ task }: TaskDetailProps) => {
   return (
     <List.Item
       key={task.id}
@@ -39,6 +29,11 @@ export const TaskDetail = ({ task }: TaskDetailProps) => {
       title={task.title}
       subtitle={task.category.title}
       accessories={[{ text: task.total_time }]}
+      actions={
+        <ActionPanel>
+          <Action title="Start Task" onAction={handleStartTask} />
+        </ActionPanel>
+      }
     />
   );
 };
