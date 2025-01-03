@@ -1,7 +1,8 @@
-import { Form, showToast, Toast, ActionPanel, Action, useNavigation } from "@raycast/api";
+import { Form, showToast, Toast, ActionPanel, Action, useNavigation, Icon } from "@raycast/api";
 import { useForm, FormValidation } from "@raycast/utils";
 import { useCategories } from "@/hooks";
 import { createTimeEntry, type Category } from "@/api";
+import { categoryColors } from "@/helpers";
 
 interface TimeEntryForm {
   title: string;
@@ -15,7 +16,7 @@ interface CreateTimeEntryProps {
 
 export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: CreateTimeEntryProps) => {
   const { pop } = useNavigation();
-  const { categories, isLoadingCategories } = useCategories();
+  const { categories, categoriesGroupByTeam, isLoadingCategories } = useCategories();
 
   const { handleSubmit, itemProps } = useForm<TimeEntryForm>({
     async onSubmit(values) {
@@ -54,11 +55,22 @@ export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: C
       }
     >
       <Form.TextField title="title" {...itemProps.title} />
-      <Form.Dropdown title="category" defaultValue={categories?.[0].id.toString()} {...itemProps.category}>
-        {categories?.map((category) => (
-          <Form.Dropdown.Item key={category.id} value={category.id.toString()} title={category.title} />
-        ))}
-      </Form.Dropdown>
+      {categoriesGroupByTeam && (
+        <Form.Dropdown title="category" defaultValue={categories?.[0].id.toString()} {...itemProps.category}>
+          {Object.entries(categoriesGroupByTeam).map(([teamName, categories]) => (
+            <Form.Dropdown.Section title={teamName}>
+              {categories.map((category) => (
+                <Form.Dropdown.Item
+                  key={category.id}
+                  icon={{ source: Icon.Circle, tintColor: categoryColors[category.color - 1] }}
+                  value={category.id.toString()}
+                  title={category.title}
+                />
+              ))}
+            </Form.Dropdown.Section>
+          ))}
+        </Form.Dropdown>
+      )}
     </Form>
   );
 };
