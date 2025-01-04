@@ -1,9 +1,10 @@
-import { List } from "@raycast/api";
+import { List, Action, ActionPanel } from "@raycast/api";
 import dayjs from "dayjs";
 
 import { useDailyActivities, useUser } from "@/hooks";
 import { DailySection } from "@/components/DailySection";
 import { RunningTimeEntry } from "@/components/RunningTimeEntry";
+import { CreateTimeEntry } from "@/components/CreateTimeEntry";
 
 export default function StartStopTimeEntry() {
   const today = dayjs();
@@ -21,6 +22,24 @@ export default function StartStopTimeEntry() {
           revalidateUser={revalidateUser}
         />
       )}
+      <List.Section title="Actions">
+        <List.Item
+          title="Create a new time entry"
+          actions={
+            <ActionPanel>
+              <Action.Push
+                title="Create Time Entry"
+                target={
+                  <CreateTimeEntry
+                    revalidateUser={revalidateUser}
+                    revalidateDailyActivities={revalidateDailyActivities}
+                  />
+                }
+              />
+            </ActionPanel>
+          }
+        />
+      </List.Section>
       {dailyActivities?.map((dailyActivity) => (
         <DailySection key={dailyActivity.date} dailyActivity={dailyActivity} revalidateUser={revalidateUser} />
       ))}
