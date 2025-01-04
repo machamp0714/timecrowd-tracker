@@ -42,6 +42,7 @@ export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: C
     },
     validation: {
       title: FormValidation.Required,
+      category: FormValidation.Required,
     },
   });
 
@@ -54,11 +55,11 @@ export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: C
         </ActionPanel>
       }
     >
-      <Form.TextField title="title" {...itemProps.title} />
+      <Form.TextField title="Title" {...itemProps.title} />
       {categoriesGroupByTeam && (
-        <Form.Dropdown title="category" defaultValue={categories?.[0].id.toString()} {...itemProps.category}>
+        <Form.Dropdown title="Category" {...itemProps.category}>
           {Object.entries(categoriesGroupByTeam).map(([teamName, categories]) => (
-            <Form.Dropdown.Section title={teamName}>
+            <Form.Dropdown.Section key={teamName} title={teamName}>
               {categories.map((category) => (
                 <Form.Dropdown.Item
                   key={category.id}
