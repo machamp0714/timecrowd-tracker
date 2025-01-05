@@ -1,4 +1,4 @@
-import { List, Action, ActionPanel } from "@raycast/api";
+import { List, Action, ActionPanel, Icon } from "@raycast/api";
 import dayjs from "dayjs";
 
 import { useDailyActivities, useUser } from "@/hooks";
@@ -24,6 +24,9 @@ export default function StartStopTimeEntry() {
       )}
       <List.Section title="Actions">
         <List.Item
+          icon={{
+            source: Icon.Clock,
+          }}
           title="Create a new time entry"
           actions={
             <ActionPanel>
