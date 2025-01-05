@@ -3,7 +3,7 @@
   "name": "timecrowd-tracker",
   "title": "TimeCrowd Tracker",
   "description": "Track your time with TimeCrowd",
-  "icon": "extension-icon.png",
+  "icon": "command-icon.png",
   "author": "machamp0714",
   "categories": [
     "Applications"
