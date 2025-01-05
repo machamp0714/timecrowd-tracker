@@ -17,7 +17,7 @@
       "mode": "no-view"
     },
     {
-      "name": "startStopTimeEntry",
+      "name": "index",
       "title": "Start/Stop Time Entry",
       "description": "Start or stop a time entry",
       "mode": "view"
