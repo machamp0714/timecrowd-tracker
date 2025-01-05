@@ -33,7 +33,7 @@ export const RunningTimeEntry = ({ timeEntry, revalidateDailyActivities, revalid
       <List.Item
         key={task.id}
         icon={{
-          source: Icon.Circle,
+          source: Icon.Clock,
           tintColor: categoryColors[category.color - 1],
         }}
         title={task.title}

@@ -25,7 +25,7 @@ export default function StartStopTimeEntry() {
       <List.Section title="Actions">
         <List.Item
           icon={{
-            source: Icon.Clock,
+            source: Icon.Plus,
           }}
           title="Create a new time entry"
           actions={
