@@ -14,7 +14,7 @@ interface RunningTimeEntryProps {
 }
 
 export const RunningTimeEntry = ({ timeEntry, revalidateDailyActivities, revalidateUser }: RunningTimeEntryProps) => {
-  const { task, category } = timeEntry;
+  const { task, team, category } = timeEntry;
   const currentTime = useCurrentTime();
 
   const handleStopTimeEntry = async () => {
@@ -37,7 +37,7 @@ export const RunningTimeEntry = ({ timeEntry, revalidateDailyActivities, revalid
           tintColor: categoryColors[category.color - 1],
         }}
         title={task.title}
-        subtitle={category.title}
+        subtitle={`${category.title} - ${team.name}`}
         accessories={[{ text: dayjs.duration(currentTime.diff(dayjs(timeEntry.started_at))).format("HH:mm:ss") }]}
         actions={
           <ActionPanel>

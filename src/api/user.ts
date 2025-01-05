@@ -1,5 +1,5 @@
 import { get } from "@/api/timecrowdClient";
-import { Category } from "@/api/dailyActivity";
+import { Category } from "@/api";
 
 export interface User {
   id: number;
@@ -12,6 +12,9 @@ export interface User {
       id: number;
       title: string;
       team_id: number;
+    };
+    team: {
+      name: string;
     };
   };
 }

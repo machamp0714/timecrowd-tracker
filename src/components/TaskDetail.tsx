@@ -26,7 +26,7 @@ export const TaskDetail = ({ task, revalidateUser }: TaskDetailProps) => {
         tintColor: categoryColors[task.category.color - 1],
       }}
       title={task.title}
-      subtitle={task.category.title}
+      subtitle={`${task.category.title} - ${task.team.name}`}
       accessories={[{ text: task.total_time }]}
       actions={
         <ActionPanel>
