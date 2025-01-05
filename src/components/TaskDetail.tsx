@@ -20,7 +20,6 @@ export const TaskDetail = ({ task, revalidateUser }: TaskDetailProps) => {
 
   return (
     <List.Item
-      key={task.id}
       icon={{
         source: Icon.Circle,
         tintColor: categoryColors[task.category.color - 1],
@@ -28,6 +27,7 @@ export const TaskDetail = ({ task, revalidateUser }: TaskDetailProps) => {
       title={task.title}
       subtitle={`${task.category.title} - ${task.team.name}`}
       accessories={[{ text: task.total_time }]}
+      keywords={[task.title, task.category.title, task.team.name]}
       actions={
         <ActionPanel>
           <Action title="Start Task" onAction={handleStartTask} />

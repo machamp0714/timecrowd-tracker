@@ -31,7 +31,6 @@ export const RunningTimeEntry = ({ timeEntry, revalidateDailyActivities, revalid
   return (
     <List.Section title="Running Time Entry">
       <List.Item
-        key={task.id}
         icon={{
           source: Icon.Clock,
           tintColor: categoryColors[category.color - 1],
