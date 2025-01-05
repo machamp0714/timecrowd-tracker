@@ -1,12 +1,14 @@
 import { Form, showToast, Toast, ActionPanel, Action, useNavigation, Icon } from "@raycast/api";
-import { useForm, FormValidation } from "@raycast/utils";
+import { useForm, FormValidation, runAppleScript } from "@raycast/utils";
 import { useCategories } from "@/hooks";
 import { createTimeEntry, type Category } from "@/api";
 import { categoryColors } from "@/helpers";
+import { useRef } from "react";
 
 interface TimeEntryForm {
   title: string;
   category: string;
+  isFromScreen: boolean;
 }
 
 interface CreateTimeEntryProps {
@@ -17,8 +19,9 @@ interface CreateTimeEntryProps {
 export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: CreateTimeEntryProps) => {
   const { pop } = useNavigation();
   const { categories, categoriesGroupByTeam, isLoadingCategories } = useCategories();
+  const titleRef = useRef<Form.TextField>(null);
 
-  const { handleSubmit, itemProps } = useForm<TimeEntryForm>({
+  const { handleSubmit, itemProps, setValue, setValidationError } = useForm<TimeEntryForm>({
     async onSubmit(values) {
       const category = categories?.find((category) => category.id.toString() === values.category) as Category;
 
@@ -40,11 +43,35 @@ export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: C
         showToast(Toast.Style.Failure, "Failed to create Time Entry");
       }
     },
+    initialValues: {
+      title: "",
+      isFromScreen: false,
+    },
     validation: {
       title: FormValidation.Required,
       category: FormValidation.Required,
     },
   });
+
+  const getTitleUsingAppleScript = async () => {
+    const script = `
+      tell application "System Events"
+        set frontApp to first application process whose frontmost is true
+        set windowTitle to name of front window of frontApp
+      end tell
+    `;
+    return await runAppleScript(script);
+  };
+
+  const handleCheckboxChange = async (checked: boolean) => {
+    if (checked) {
+      const title = await getTitleUsingAppleScript();
+      setValue("title", title);
+      setValidationError("title", null);
+    } else {
+      titleRef.current?.reset();
+    }
+  };
 
   return (
     <Form
@@ -55,7 +82,12 @@ export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: C
         </ActionPanel>
       }
     >
-      <Form.TextField title="Title" {...itemProps.title} />
+      <Form.TextField title="Title" {...itemProps.title} ref={titleRef} />
+      <Form.Checkbox
+        id="isFromScreen"
+        label="Get the title from the screen you are viewing"
+        onChange={handleCheckboxChange}
+      />
       {categoriesGroupByTeam && (
         <Form.Dropdown title="Category" {...itemProps.category}>
           {Object.entries(categoriesGroupByTeam).map(([teamName, categories]) => (
