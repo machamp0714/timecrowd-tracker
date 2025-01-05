@@ -1,4 +1,5 @@
 export { startTask } from "./task";
-export { stopTimeEntry } from "./timeEntry";
+export { createTimeEntry, stopTimeEntry } from "./timeEntry";
 export { getUser, type User } from "./user";
-export { getDailyActivity, type DailyActivity, type Task, type Category } from "./dailyActivity";
+export { getDailyActivity, type DailyActivity, type Task } from "./dailyActivity";
+export { getCategories, type Category } from "./category";

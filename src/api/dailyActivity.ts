@@ -1,11 +1,6 @@
 import { get } from "@/api/timecrowdClient";
+import type { Category } from "@/api/category";
 import type { Dayjs } from "dayjs";
-
-export interface Category {
-  id: number;
-  title: string;
-  color: number;
-}
 
 interface Team {
   id: number;
