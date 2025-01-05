@@ -3,21 +3,15 @@
   "name": "timecrowd-tracker",
   "title": "TimeCrowd Tracker",
   "description": "Track your time with TimeCrowd",
-  "icon": "extension-icon.png",
+  "icon": "command-icon.png",
   "author": "machamp0714",
   "categories": [
-    "Applications"
+    "Productivity"
   ],
   "license": "MIT",
   "commands": [
     {
-      "name": "oauth",
-      "title": "OAuth",
-      "description": "OAuth integration",
-      "mode": "no-view"
-    },
-    {
-      "name": "startStopTimeEntry",
+      "name": "index",
       "title": "Start/Stop Time Entry",
       "description": "Start or stop a time entry",
       "mode": "view"
@@ -25,12 +19,12 @@
   ],
   "preferences": [
     {
-      "description": "The client id for your TimeCrowd account.",
-      "name": "clientId",
+      "description": "The access token for your TimeCrowd account.",
+      "name": "accessToken",
       "placeholder": "Can be found at https://timecrowd.net/oauth/applications",
       "required": true,
-      "title": "TimeCrowd Client ID",
-      "type": "textfield"
+      "title": "TimeCrowd Access Token",
+      "type": "password"
     }
   ],
   "dependencies": {

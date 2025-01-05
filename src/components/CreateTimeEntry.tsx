@@ -82,7 +82,7 @@ export const CreateTimeEntry = ({ revalidateUser, revalidateDailyActivities }: C
         </ActionPanel>
       }
     >
-      <Form.TextField title="Title" {...itemProps.title} ref={titleRef} />
+      <Form.TextField title="Title" placeholder="task title" {...itemProps.title} ref={titleRef} />
       <Form.Checkbox
         id="isFromScreen"
         label="Get the title from the screen you are viewing"
