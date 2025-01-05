@@ -11,12 +11,6 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "oauth",
-      "title": "OAuth",
-      "description": "OAuth integration",
-      "mode": "no-view"
-    },
-    {
       "name": "index",
       "title": "Start/Stop Time Entry",
       "description": "Start or stop a time entry",
@@ -25,12 +19,12 @@
   ],
   "preferences": [
     {
-      "description": "The client id for your TimeCrowd account.",
-      "name": "clientId",
+      "description": "The access token for your TimeCrowd account.",
+      "name": "accessToken",
       "placeholder": "Can be found at https://timecrowd.net/oauth/applications",
       "required": true,
-      "title": "TimeCrowd Client ID",
-      "type": "textfield"
+      "title": "TimeCrowd Access Token",
+      "type": "password"
     }
   ],
   "dependencies": {

@@ -1,18 +1,22 @@
-import { getToken } from "@/oauth";
+import { getPreferenceValues } from "@raycast/api";
 import fetch from "node-fetch";
+
+interface Preferences {
+  accessToken: string;
+}
+const baseUrl = "https://timecrowd.net";
+const preferences = getPreferenceValues<Preferences>();
+const accessToken = preferences.accessToken;
 
 export const get = <T>(url: string) => timecrowdFetch<T>("GET", url);
 export const post = <T>(url: string, body?: unknown) => timecrowdFetch<T>("POST", url, body);
 export const patch = <T>(url: string, body?: unknown) => timecrowdFetch<T>("PATCH", url, body);
 
-const baseUrl = "https://timecrowd.net";
-
 const timecrowdFetch = async <T>(method: string, url: string, body?: unknown) => {
-  const token = await getToken();
   const response = await fetch(`${baseUrl}${url}`, {
     method,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
     body: body ? JSON.stringify(body) : undefined,
