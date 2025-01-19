@@ -19,6 +19,6 @@ export const startTask = async (teamId: number, taskId: number) => {
   return await post(`/api/v1/teams/${teamId}/tasks/${taskId}/start`);
 };
 
-export const getRecentTasks = async (): Promise<Task[]> => {
-  return await get("/api/v1/user/recent_tasks");
+export const getRecentTasks = async (): Promise<{ tasks: Task[] }> => {
+  return await get("/api/v2/recent_tasks");
 };
