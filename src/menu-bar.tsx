@@ -11,7 +11,7 @@ export default function Command() {
   return (
     <MenuBarExtra
       icon="command-icon.png"
-      title={user?.time_entry.task.title}
+      title={user?.time_entry?.task.title}
       tooltip="Current Time Entry"
       isLoading={isLoadingUser}
     >
