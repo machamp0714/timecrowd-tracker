@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import { useUser } from "@/hooks";
 import { useCurrentTime } from "@/hooks";
+import { stopTimeEntry } from "@/api/timeEntry";
 dayjs.extend(duration);
 
 export default function Command() {
@@ -20,7 +21,10 @@ export default function Command() {
     >
       {user?.time_entry && (
         <MenuBarExtra.Section title="Running Time Entry">
-          <MenuBarExtra.Item title={`${user.time_entry.task.title} ${elapsedTime}`} />
+          <MenuBarExtra.Item
+            title={`${user.time_entry.task.title} ${elapsedTime}`}
+            onAction={() => stopTimeEntry(user.time_entry.id)}
+          />
         </MenuBarExtra.Section>
       )}
     </MenuBarExtra>
