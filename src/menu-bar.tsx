@@ -19,7 +19,7 @@ export default function Command() {
         <MenuBarExtra.Section title="Running Time Entry">
           <MenuBarExtra.Item
             title={user.time_entry.task.title}
-            subtitle={formatElapsedTime(user?.time_entry?.started_at, currentTime)}
+            subtitle={formatElapsedTime(user.time_entry.started_at, currentTime)}
             onAction={() => stopTimeEntry(user.time_entry.id)}
           />
         </MenuBarExtra.Section>
