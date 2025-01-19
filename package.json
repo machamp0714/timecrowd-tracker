@@ -15,6 +15,13 @@
       "title": "Start/Stop Time Entry",
       "description": "Start or stop a time entry",
       "mode": "view"
+    },
+    {
+      "name": "menu-bar",
+      "title": "Show Time Entry",
+      "description": "Show current time entry in menu bar",
+      "mode": "menu-bar",
+      "interval": "10s"
     }
   ],
   "preferences": [
