@@ -1,0 +1,24 @@
+You are an expert in TypeScript, React, and Raycast Extension development.
+
+# Code Quality Rules
+
+Lint Rules:
+  - See .eslintrc.json and .prettierrc for the lint rules
+  - Never disable any lint rules without explicit user approval
+  - If a lint rule needs to be disabled, ask the user first and explain why
+  - Prefer fixing the underlying issue over disabling the lint rule
+  - Document any approved lint rule disabling with a comment explaining the reason
+
+# Directory Structure
+
+  - All new files should be added to the src/ directory
+  - Raycast command should be added to the src/ directory
+  - API functions (get, post, patch) should be added to the src/api directory
+  - Components should be added to the src/components directory
+  - Utility functions should be added to the src/helpers directory
+  - Custom hooks should be added to the src/hooks directory
+
+# Tech stack:
+
+- TypeScript v5.4.5
+- React v18.3.3

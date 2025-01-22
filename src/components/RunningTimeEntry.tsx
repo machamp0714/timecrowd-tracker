@@ -1,11 +1,7 @@
 import { List, Icon, Action, ActionPanel, showToast, Toast } from "@raycast/api";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
 import { stopTimeEntry, type User } from "@/api";
 import { useCurrentTime } from "@/hooks";
-import { categoryColors } from "@/helpers";
-
-dayjs.extend(duration);
+import { categoryColors, formatElapsedTime } from "@/helpers";
 
 interface RunningTimeEntryProps {
   timeEntry: User["time_entry"];
@@ -37,7 +33,7 @@ export const RunningTimeEntry = ({ timeEntry, revalidateDailyActivities, revalid
         }}
         title={task.title}
         subtitle={`${category.title} - ${team.name}`}
-        accessories={[{ text: dayjs.duration(currentTime.diff(dayjs(timeEntry.started_at))).format("HH:mm:ss") }]}
+        accessories={[{ text: formatElapsedTime(timeEntry.started_at, currentTime) }]}
         actions={
           <ActionPanel>
             <Action title="Stop Time Entry" onAction={handleStopTimeEntry} />
